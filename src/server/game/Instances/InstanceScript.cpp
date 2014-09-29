@@ -478,3 +478,26 @@ void InstanceScript::UpdatePhasing()
         if (Player* player = itr->GetSource())
             player->GetPhaseMgr().NotifyConditionChanged(phaseUdateData);
 }
+
+
+
+bool InstanceScript::IsWipe()
+{
+    Map::PlayerList const& PlayerList = instance->GetPlayers();
+
+    if (PlayerList.isEmpty())
+        return true;
+
+    for (Map::PlayerList::const_iterator Itr = PlayerList.begin(); Itr != PlayerList.end(); ++Itr)
+    {
+        Player* player = Itr->GetSource();
+
+        if (!player)
+            continue;
+
+        if (player->IsAlive() && !player->IsGameMaster())
+            return false;
+    }
+
+    return true;
+}

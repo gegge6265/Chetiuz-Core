@@ -686,3 +686,9 @@ void GetPlayerListInGrid(std::list<Player*>& list, WorldObject* source, float ma
 {
     source->GetPlayerListInGrid(list, maxSearchRange);
 }
+
+void GetPositionWithDistInOrientation(Unit* pUnit, float dist, float orientation, float& x, float& y)
+{
+    x = pUnit->GetPositionX() + (dist * cos(orientation));
+    y = pUnit->GetPositionY() + (dist * sin(orientation));
+}

@@ -2719,6 +2719,15 @@ void WorldObject::GetPlayerListInGrid(std::list<Player*>& playerList, float maxS
     this->VisitNearbyWorldObject(maxSearchRange, searcher);
 }
 
+void WorldObject::GetCreatureListWithEntryInGridAppend(std::list<Creature*>& creatureList, uint32 entry, float maxSearchRange) const
+{
+    std::list<Creature*> tempList;
+    GetCreatureListWithEntryInGrid(tempList, entry, maxSearchRange);
+    creatureList.sort();
+    tempList.sort();
+    creatureList.merge(tempList);
+}
+
 /*
 namespace Trinity
 {
